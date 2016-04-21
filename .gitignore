@@ -11,6 +11,9 @@ obj/
 *.unityproj
 *.booproj
 
+#own stuff
+3D/Test/
+
 # ============ #
 # OS generated #
 # ============ #
