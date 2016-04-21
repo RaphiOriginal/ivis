@@ -54,15 +54,15 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("data.csv", function(error, data) {
+d3.csv("data2.csv", function(error, data) {
   if (error) throw error;
 
-  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "State"; }));
+  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "firm"; }));
 
   data.forEach(function(d) {
     var y0 = 0;
-    d.ages = color.domain().map(function(name) { return {name: name, y0: y0, y1: y0 += +d[name]}; });
-    d.total = d.ages[d.ages.length - 1].y1;
+    d.val = color.domain().map(function(firm) { return {firm: firm, y0: y0, y1: y0 += +d[firm]}; });
+    d.total = d.val[d.val.length - 1].y1;
   });
 
   data.sort(function(a, b) { return b.total - a.total; });
@@ -83,7 +83,7 @@ d3.csv("data.csv", function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Population");
+      .text("Cash");
 
   var state = svg.selectAll(".state")
       .data(data)
