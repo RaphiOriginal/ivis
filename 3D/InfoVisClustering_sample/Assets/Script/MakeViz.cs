@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MakeViz : MonoBehaviour {
     public float instanceScale = 1.0f;
@@ -9,9 +10,16 @@ public class MakeViz : MonoBehaviour {
     public int dataColumnZ = 2;
     public int dataColumnColour = 3;
 
-    public float posScaleX = 10.0f;
-    public float posScaleY = 10.0f;
-    public float posScaleZ = 10.0f;
+	public float posScaleX = 10f;
+	public float posScaleY = 10f;
+	public float posScaleZ = 10f;
+
+	private float scaleCheck = 1f;
+	private float scaleCheckOld = 1f;
+
+	public Slider sX;
+	public Slider sY;
+	public Slider sZ;
 
     // These cache the corresponding public dataColumn fields
     // so that we can detect changes made in Editor in Update()
@@ -32,8 +40,13 @@ public class MakeViz : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		posScaleX = sX.value;
+		posScaleY = sY.value;
+		posScaleZ = sZ.value;
+		scaleCheckOld = scaleCheck;
+		scaleCheck = posScaleX + posScaleY + posScaleZ;
         // Update coloumn assignment if one or more fields have changed
-	    if ( (dataColumnX != m_dcX) || (dataColumnY != m_dcY) || (dataColumnZ != m_dcZ) || (dataColumnColour != m_dcColour) )
+		if ( (dataColumnX != m_dcX) || (dataColumnY != m_dcY) || (dataColumnZ != m_dcZ) || (dataColumnColour != m_dcColour) || (scaleCheck != scaleCheckOld))
             update3DCloud(dataColumnX, dataColumnY, dataColumnZ, dataColumnColour);
     }
 
