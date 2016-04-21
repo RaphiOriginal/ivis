@@ -83,22 +83,21 @@ public class ParseDB : MonoBehaviour {
         while (file.ReadLine() != null)
             lineCount++;
 
-        int rowCount = lineCount;
+		int rowCount = lineCount - 1;
         int columnCount = 0;
         lineCount = 0;
 
         // reset file stream to beginning for actual reading of data
         file.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
 
+		string title;
+		if((title = file.ReadLine()) != null){
+			//TODO Get Titles for Menu
+		}
+
         while ((line = file.ReadLine()) != null)
         {
-            //string[] items = line.Split((string[])null, StringSplitOptions.RemoveEmptyEntries);
 			string[] items = line.Split (',');
-			//for (int i = 0; i < items.Length; i++) {
-				//if (items [i] == null || items [i].Equals ("NULL")) {
-					//items [i] = "0";
-				//}
-			//}
 
             if (items.Length > 0)
             {
