@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ParseDB : MonoBehaviour {
     public string filePath;
@@ -9,6 +11,7 @@ public class ParseDB : MonoBehaviour {
 
     float[,] m_dataArray;
     bool m_dataValid = false;
+	List<Dropdown.OptionData> options;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +34,10 @@ public class ParseDB : MonoBehaviour {
     {
         return m_dataValid;
     }
+
+	public List<Dropdown.OptionData> GetOptionData() {
+		return options;
+	}
 
     public int GetRowCount()
     {
@@ -92,6 +99,12 @@ public class ParseDB : MonoBehaviour {
 
 		string title;
 		if((title = file.ReadLine()) != null){
+			string[] names = title.Split (',');
+			options = new List<Dropdown.OptionData> ();
+			foreach (var n in names) {
+				options.Add (new Dropdown.OptionData(n));
+			}
+
 			//TODO Get Titles for Menu
 		}
 
@@ -109,7 +122,7 @@ public class ParseDB : MonoBehaviour {
 
                 for (int i=0;i<columnCount;i++)
                 {
-                    m_dataArray[lineCount, i] = int.Parse(items[i], System.Globalization.NumberStyles.Any);
+                    m_dataArray[lineCount, i] = float.Parse(items[i], System.Globalization.NumberStyles.Any);
                 }
 
                 lineCount++;

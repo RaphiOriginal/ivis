@@ -41,19 +41,15 @@ public class MakeViz : MonoBehaviour {
         {
             make3DCloud();
             update3DCloud(dataColumnX, dataColumnY, dataColumnZ,dataColumnColour);
-			List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
-			for (int i = 0; i < m_dataSource.GetColumnCount (); i++) {
-				options.Add (new Dropdown.OptionData(i.ToString()));
-			}
 			dX.ClearOptions ();
 			dY.ClearOptions ();
 			dZ.ClearOptions ();
 			dColor.ClearOptions ();
 
-			dX.AddOptions (options);
-			dY.AddOptions (options);
-			dZ.AddOptions (options);
-			dColor.AddOptions (options);
+			dX.AddOptions (m_dataSource.GetOptionData());
+			dY.AddOptions (m_dataSource.GetOptionData());
+			dZ.AddOptions (m_dataSource.GetOptionData());
+			dColor.AddOptions (m_dataSource.GetOptionData());
         }
 	}
 	
