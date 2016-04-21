@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class MakeViz : MonoBehaviour {
@@ -40,6 +41,19 @@ public class MakeViz : MonoBehaviour {
         {
             make3DCloud();
             update3DCloud(dataColumnX, dataColumnY, dataColumnZ,dataColumnColour);
+			List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
+			for (int i = 0; i < m_dataSource.GetColumnCount (); i++) {
+				options.Add (new Dropdown.OptionData(i.ToString()));
+			}
+			dX.ClearOptions ();
+			dY.ClearOptions ();
+			dZ.ClearOptions ();
+			dColor.ClearOptions ();
+
+			dX.AddOptions (options);
+			dY.AddOptions (options);
+			dZ.AddOptions (options);
+			dColor.AddOptions (options);
         }
 	}
 	
@@ -50,6 +64,12 @@ public class MakeViz : MonoBehaviour {
 		posScaleZ = sZ.value;
 		scaleCheckOld = scaleCheck;
 		scaleCheck = posScaleX + posScaleY + posScaleZ;
+
+		dataColumnX = dX.value;
+		dataColumnY = dY.value;
+		dataColumnZ = dZ.value;
+		dataColumnColour = dColor.value;
+
         // Update coloumn assignment if one or more fields have changed
 		if ( (dataColumnX != m_dcX) || (dataColumnY != m_dcY) || (dataColumnZ != m_dcZ) || (dataColumnColour != m_dcColour) || (scaleCheck != scaleCheckOld))
             update3DCloud(dataColumnX, dataColumnY, dataColumnZ, dataColumnColour);
