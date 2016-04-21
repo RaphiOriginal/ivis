@@ -8,7 +8,7 @@ public class MakeViz : MonoBehaviour {
     public int dataColumnX = 0;
     public int dataColumnY = 1;
     public int dataColumnZ = 2;
-    public int dataColumnColour = 3;
+    public int dataColumnColour = 2;
 
 	public float posScaleX = 10f;
 	public float posScaleY = 10f;
@@ -20,6 +20,11 @@ public class MakeViz : MonoBehaviour {
 	public Slider sX;
 	public Slider sY;
 	public Slider sZ;
+
+	public Dropdown dX;
+	public Dropdown dY;
+	public Dropdown dZ;
+	public Dropdown dColor;
 
     // These cache the corresponding public dataColumn fields
     // so that we can detect changes made in Editor in Update()
