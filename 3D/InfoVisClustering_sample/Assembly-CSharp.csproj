@@ -45,9 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MakeViz.cs" />
-     <Compile Include="Assets\MouseWalk.cs" />
-     <Compile Include="Assets\ParseDB.cs" />
+     <Compile Include="Assets\Script\MakeViz.cs" />
+     <Compile Include="Assets\Script\MouseWalk.cs" />
+     <Compile Include="Assets\Script\ParseDB.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
