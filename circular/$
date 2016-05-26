@@ -1,0 +1,53 @@
+var div = document.getElementById("#chart");
+
+var width = 960
+var height = 500
+var radius = Math.min(width, height) / 2;
+
+var arc = d3.svg.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(radius - 70);
+
+var arc2 = d3.svg.arc()
+    .outerRadius(radius - 70)
+    .innerRadius(radius - 140);
+
+var arc3 = d3.svg.arc()
+    .outerRadius(radius - 140)
+    .innerRadius(radius - 210);
+
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  arc.startAngle(0);
+  arc2.startAngle(0);
+  arc3.startAngle(0);
+
+  arc.endAngle(toRadiant(90, 100));
+  arc2.endAngle(toRadiant(50, 100));
+  arc3.endAngle(toRadiant(60, 100));
+
+  svg.append("path")
+    .attr("class", "arc")
+    .attr("d", arc)
+    .append("text")
+    .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+    .attr("text-anchor", "middle")
+    .text("A");
+
+  svg.append("path")
+    .attr("class", "arc2")
+    .attr("d", arc2);
+
+  svg.append("path")
+    .attr("class", "arc3")
+    .attr("d", arc3);
+
+function toRadiant(value, max){
+  var smallest = (2 * Math.PI) / max;
+  return value * smallest;
+}
